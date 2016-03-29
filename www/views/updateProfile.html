@@ -1,0 +1,35 @@
+<ion-view view-title="Profile" ng-controller="ProfileUpdateController">
+    <ion-content class="profile">
+        <md-toolbar layout-padding layout="row">
+            <md-button ng-click="back()" aria-label="Back" class="md-icon-button"><md-icon md-svg-src="img/icons/ic_arrow_back_white_24px.svg"></md-icon></md-button>
+            <h1 class="md-headline" flex>Profiel bewerken</h1>
+        </md-toolbar>
+        
+        <md-content>
+            
+            <form name="profile" layout-padding>
+                
+                <md-input-container> 
+                    <label>Naam</label> 
+                    <input type="text" ng-model="data.displayName" name="displayName" required>
+                    <div ng-messages="profile.displayName.$error" role="alert">
+                        <div ng-message="required">Naam is verplicht</div>
+                    </div>
+                </md-input-container>
+                
+                <div class="md-actions">
+                    <md-button ng-click="save()" class="md-primary md-raised">Opslaan</md-button>
+                </div>
+                                   
+                <!-- TODO image -->                
+                
+            </form>
+            
+            <md-divider></md-divider>
+                
+            <update-current-position></update-current-position>            
+            
+        </md-content>
+        
+    </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-view view-title="Statistieken" ng-controller="StatsController">
+    <ion-content>
+        <md-toolbar layout-padding layout="row">
+            <md-button ng-click="back()" class="md-icon-button" aria-label="Back"><md-icon md-svg-src="img/icons/ic_arrow_back_white_24px.svg"></md-icon></md-button>
+            <h1 class="md-headline" flex>Statistieken</h1>
+        </md-toolbar>
+        <md-content layout-padding md-theme="default">
+                        
+            <md-list class="stats">
+
+                <md-list-item ng-repeat="user in users">
+                    <user-header user="user" sub="user.sub" flex></user-header>
+                    <span human-position="{{$index}}"></span>
+                </md-list-item>
+
+            </md-list>
+
+        </md-content>
+    </ion-content>
+</ion-view>

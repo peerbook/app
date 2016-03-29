@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-eval' 'unsafe-inline'; script-src * 'self' 'unsafe-eval' 'unsafe-inline'">
+        
+        <title>Peerbook</title>
+        
+        <link rel="stylesheet" type="text/css" href="lib/angular-material/angular-material.min.css">        
+        
+        <!-- Polyfills -->
+        <script src="js/lib/flex.polyfill.js"></script>
+        <script src="js/lib/webcomponents-lite.min.js"></script>
+        
+        
+        <!-- Base TODO: min versions -->
+        <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+        <script src="lib/angular-aria/angular-aria.js"></script>
+        <script src="lib/angular-material/angular-material.js"></script>
+        <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+        <script src="lib/angular-messages/angular-messages.js"></script>
+        
+        <script src="cordova.js"></script>
+        
+        
+        <!-- Own scripts and styles -->        
+        <script src="js/services.js"></script>
+        
+        <script src="js/directives.js"></script>
+        
+        <script src="js/app.js"></script>        
+        <link rel="stylesheet" type="text/css" href="css/app.min.css">
+    </head>
+    
+    <body ng-app="peerbook">
+
+        <ion-nav-view></ion-nav-view>
+        
+        <script type="text/ng-template" id="bookCard.html">
+            <article class="book md-whiteframe-z1" ng-class="{lended: item.lended && mode == 'me' }">
+                
+                <div class="heading" layout="row">
+                    <user-header ng-if=" mode == 'me' " flex user="item.user" sub="item.user.location"></user-header>
+                    <user-header ng-if=" mode != 'me' " flex user="item.user" sub="item.distance"></user-header>
+     
+                    <md-menu class="more" ng-if=" mode == 'me' ">
+
+                        <md-button class="more md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon md-menu-origin md-svg-src="img/icons/ic_more_vert_black_24px.svg" aria-label="More"></md-icon>
+                        </md-button>
+
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="remove(item)">
+                                    <md-icon md-svg-src="img/icons/ic_delete_black_24px.svg" md-menu-align-target></md-icon>
+                                    Verwijder
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="lent(item)" ng-if="!item.lended">
+                                    <md-icon md-svg-src="img/icons/ic_location_off_black_24px.svg" md-menu-align-target></md-icon>
+                                    Uitgeleend
+                                </md-button>
+                                <md-button ng-click="lent(item)" ng-if="item.lended">
+                                    <md-icon md-svg-src="img/icons/ic_location_on_black_24px.svg" md-menu-align-target></md-icon>
+                                    Beschikbaar
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                
+                    </md-menu>
+            
+            
+                </div>
+        
+                <div class="image">
+                    <a ng-href="#/book/{{item.ean}}">
+                        <book-cover image="item.image" title="item.title"></book-cover>
+                    </a>
+                </div>
+        
+                <div class="footer" ng-if="mode != 'me'">
+                    <md-button class="md-icon-button" ng-click="chat(item)" aria-label="Chat">
+                        <md-icon aria-label="Chat" md-svg-src="img/icons/comment_a6a6a6_24px.svg"></md-icon>
+                    </md-button>
+                </div>
+        
+            </article>
+        </script>
+        
+        <script type="text/ng-template" id="userHeader.html">
+            <div layout="row" class="userHeader">
+                <a href="" ng-click="go($event)"><img ng-src="{{user.image}}" alt="{{user.displayName}}"></a>
+                <div flex>
+                    <p class="name"><a href="" ng-click="go($event)">{{user.displayName}}</a></p>
+                    <p class="sub">{{sub}}</p>
+                </div>
+            </div>
+        </script>
+    </body>
+</html>

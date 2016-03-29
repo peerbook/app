@@ -1,0 +1,47 @@
+<ion-view view-title="Chat" ng-controller="ChatController">
+    <ion-content class="chatView" scroll="false">    
+        
+        <md-toolbar layout-padding layout="row" class="md-whiteframe-z1" ng-if="item.target == 'owner'">
+            <md-button ng-click="back()" aria-label="Back" class="md-icon-button"><md-icon md-svg-src="img/icons/ic_arrow_back_white_24px.svg"></md-icon></md-button>
+            
+            <div class="image"><img class="avatar" ng-src="{{item.owner.image}}" alt="{{item.owner.displayName}}"></div>
+            <div flex>
+                <h1 class="md-headline">{{item.owner.displayName}}</h1>
+                <p>{{item.copy.title}}</p>
+            </div>
+            
+        </md-toolbar>
+        
+        <md-toolbar layout-padding layout="row" class="md-whiteframe-z1" ng-if="item.target == 'issuer'">
+            <md-button ng-click="back()" aria-label="Back" class="md-icon-button"><md-icon md-svg-src="img/icons/ic_arrow_back_white_24px.svg"></md-icon></md-button>
+            
+            <div class="image"><img class="avatar" ng-src="{{item.issuer.image}}" alt="{{item.issuer.displayName}}"></div>
+            <div flex>
+                <h1 class="md-headline">{{item.issuer.displayName}}</h1>
+                <p>{{item.copy.title}}</p>
+            </div>
+            
+        </md-toolbar>
+
+        <md-content layout="column">
+
+            <div class="chats" id="chatScroll" flex>
+
+                 <div ng-repeat-start="item in messages.messages" class="message" ng-class="{'notice': item.type, me: item.user.id.$id == me.id.$id }">
+                    <div class="md-whiteframe-z1">
+                        <p>{{item.message}}</p>
+                        <time>{{item.date.sec*1000|date:"HH:mm"}}</time>
+                    </div>
+                </div>
+                <div class="clear" ng-repeat-end></div>
+
+            </div>
+
+
+            <div class="ownMessage" layout="row">
+                <input direct-focus flex type="text" ng-model="form.msg" class="md-whiteframe-z1" on-enter="send()" required>
+                <md-button aria-label="Verzenden" ng-click="send()" class="md-fab md-mini md-primary md-accent"><md-icon md-svg-src="img/icons/ic_send_white_24px.svg"></md-icon></md-button>
+            </div>
+        </md-content>        
+    </ion-content>
+</ion-view>

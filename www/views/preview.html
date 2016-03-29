@@ -1,0 +1,34 @@
+<ion-view view-title="Preview" ng-controller="PreviewController">
+    <ion-content>
+        <md-toolbar layout-padding layout="row">
+            <md-button ng-click="back()" aria-label="Back" class="md-icon-button"><md-icon md-svg-src="img/icons/ic_arrow_back_white_24px.svg"></md-icon></md-button>
+            <h1 class="md-headline" flex>Boek toevoegen</h1>
+        </md-toolbar>
+                
+        <md-content layout="row" class="bookPreview">
+            <div class="image" layout-padding>
+                <book-cover image="item.image" title="item.title"></book-cover>
+            </div>
+            <div flex layout-padding>
+                <h2 class="md-headline">{{item.title}}</h2>
+                <p>{{item.sub}}</p>
+                <p>ISBN: {{item.ean}}</p>
+            </div>
+        </md-content>
+        
+        <md-content class="md-actions center">
+
+            <md-button ng-click="add()" class="md-primary md-raised">
+                Toevoegen
+            </md-button>
+            <md-button ng-click="again()" class="md-primary">
+                Scan opnieuw
+            </md-button>
+            <md-button ng-click="back()">
+                Cancel
+            </md-button>
+            
+        </md-content>
+        
+    </ion-content>
+</ion-view>

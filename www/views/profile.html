@@ -1,0 +1,22 @@
+<ion-view view-title="Profile" ng-controller="ProfileController">
+    <ion-content class="profile">
+                
+        <md-toolbar layout-padding layout="row">
+            <md-button ng-click="back()" aria-label="Back" class="md-icon-button"><md-icon md-svg-src="img/icons/ic_arrow_back_white_24px.svg"></md-icon></md-button>
+            <h1 class="md-headline" flex>Profiel</h1>
+            <md-button ng-if=" id == 'me' " href="#/updateProfile" aria-label="Edit profile" class="md-icon-button"><md-icon md-svg-src="img/icons/ic_mode_edit_white_24px.svg"></md-icon></md-button>
+        </md-toolbar>
+        
+        <div class="extendedToolbar">            
+            <md-button href="#" class="profilePhoto md-fab" aria-label="Change profile picture" background-image="{{user.image}}">
+                <md-icon ng-hide="user.image" md-svg-src="img/icons/ic_photo_camera_white_48px.svg"></md-icon>
+            </md-button>
+        </div>
+        
+        <md-content layout-padding>
+            <h1 class="md-display-1">{{user.displayName}}</h1>
+            <p class="sub">{{user.bookCount}} boeken, {{user.location}}, {{user.distance}}</p>           
+        </md-content>
+        
+    </ion-content>
+</ion-view>

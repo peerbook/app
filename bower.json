@@ -1,0 +1,15 @@
+{
+  "name": "PeerbookMobileApp",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.1"
+  },
+  "dependencies": {
+    "angular-material": "^0.10.0",
+    "angular-messages": "^1.4.5",
+    "ngCordova": "~0.1.19-alpha"
+  },
+  "resolutions": {
+    "angular": "1.4.5"
+  }
+}

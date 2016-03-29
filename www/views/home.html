@@ -1,0 +1,81 @@
+<ion-view view-title="Home" ng-controller="HomeController">
+    <ion-content scroll="false">                
+        
+        <md-toolbar layout-padding layout="row" >
+            <md-icon md-svg-src="img/peerbieb_logo_wit_32px_unitedshape.svg" aria-label="Peerbook"></md-icon>
+            <h1 class="md-headline" flex>Peerbook</h1>
+            <md-button href="#/stats" class="md-icon-button">
+                <md-icon md-svg-src="img/icons/leaderboards.svg" aria-label="Leaderbords"></md-icon>
+            </md-button>
+            <md-button href="#/profile/me" class="md-icon-button">
+                <md-icon md-svg-src="img/icons/ic_person_white_24px.svg" aria-label="Settings"></md-icon>
+            </md-button>
+        </md-toolbar>
+        
+        <md-fab-speed-dial md-direction="up" class="md-scale fab-bottom-right">
+            <md-fab-trigger>
+                <md-button ng-click="scan()" aria-label="add book" class="md-fab md-accent">
+                    <md-icon md-svg-src="img/icons/action_plus_24px.svg"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+        </md-fab-speed-dial>
+        
+        <md-content md-theme="tabs" layout-fill>
+                    
+            <md-tabs md-border-bottom md-swipe-content="true" md-stretch-tabs="always" layout-fill full-height>
+                
+                <md-tab label="Buurt" layout-fill>
+                    <md-content layout-fill class="grey">
+                        
+                        <div layout="row" layout-align="space-around left" layout-wrap class="bookContainer">
+                            <book-card flex="50" ng-repeat="book in localBooks track by $index" item="book"></book-card>
+                        </div>
+                        
+                    </md-content>
+                </md-tab>
+                
+                <md-tab label="Mijn Boeken">
+                    <md-content layout-fill class="grey">
+                        
+                        <div layout="row" layout-align="space-around left" layout-wrap class="bookContainer">
+                            <book-card flex="50" ng-repeat="book in books track by $index" item="book" mode="me"></book-card>
+                        </div>
+                        
+                    </md-content>
+                </md-tab>
+                
+                <md-tab label="Chats" layout-fill>
+                    <md-content class="chatsView" layout-fill ng-controller="ChatsController">
+            
+                        <md-list>
+
+                            <md-list-item ng-repeat="item in support" ng-click="chat(item.id.$id, 'copy')">
+                                <user-header flex user="item.user" on-click="chat(item.id.$id, 'copy')" sub="'Laat weten wat je van Peerbook vindt'"></user-header>
+                                <md-icon aria-label="Chat" md-svg-src="img/icons/comment_a6a6a6_24px.svg"></md-icon>
+                            </md-list-item>
+                            
+                            <md-list-item ng-repeat="item in chats" ng-click="chat(item.id.$id)">
+                                <div layout="row" class="userHeader" flex>
+                                    <a ng-href="#/chat/{{item.id.$id}}">
+                                        <img ng-if="item.target == 'issuer'" ng-src="{{item.issuer.image}}" alt="{{item.issuer.displayName}}">
+                                        <img ng-if="item.target == 'owner'" ng-src="{{item.owner.image}}" alt="{{item.owner.displayName}}">
+                                    </a>
+                                    <div flex>
+                                        <p class="name"><a ng-href="#/chat/{{item.id.$id}}">{{item.target == 'issuer' ? item.issuer.displayName : item.owner.displayName}}</a></p>
+                                        <p class="sub" ng-if="item.lastMessage">
+                                            {{item.lastMessage.date.sec*1000|ago}} - {{item.lastMessage.message}} 
+                                        </p>
+                                    </div>
+                                </div>
+                                <book-cover image="item.copy.image" title="item.copy.title"></book-cover>
+                            </md-list-item>
+
+                        </md-list>
+
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+            
+        </md-content>
+    </ion-content>
+</ion-view>
