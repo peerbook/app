@@ -398,7 +398,7 @@ services.provider('$api', function ($httpProvider) {
         
     var $this = this;
     this.config = {
-        host : 'http://peerbieb.com',
+        host : 'http://peerbook.dev',
         token : null
     };
     
@@ -817,7 +817,7 @@ services.provider('InitApp', function ($apiProvider, PeerbookUserProvider) {
                     if(!DeviceUser.isDevice()) {
                         console.info('Browser mode!');
                         $apiProvider.setConfig({
-                            host: 'http://peerbieb.plank.nl'
+                            host: 'http://peerbook.dev'
                         });
                     }
                     
