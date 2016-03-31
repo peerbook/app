@@ -6,7 +6,7 @@ This app is made using ionic framework and angularJS. You will need ionic.
 
 `npm install`
 `npm install -g ionic`
-`ionic platform android`
+`ionic state restore`
 `ionic build android`
 `ionic run android` or `ionic emulate android`
 It should also work on ios, but not tested.
